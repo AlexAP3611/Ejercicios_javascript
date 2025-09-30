@@ -6,20 +6,24 @@
     <title>CALCULADORA</title>
     <script>
         var num1 = 0;
-        var num2 = 0;
+        var num2;
         var operador;
 
         function darNumero(numero) {
-            if(num1 == '0'){
+            if (num1 ==0 && num1 !== '0.') {
                 num1 = numero;
             } else {
                 num1 += numero;
             }
-            document.getElementById("valor_numero").value = num1;
+            refrescar();
         }
 
         function darComa() {
-            num1 = '0.' + num1;
+            if(num1 == 0){
+                num1 = '0.';
+            } else if(num1.indexOf('.') == -1){
+                num1 += '.';
+            }
             refrescar();
         }
 
@@ -32,28 +36,31 @@
         function operar(valor) {
             operador = valor;
             num2 = num1;
-            alert(num2);
+            
+            num1 = 0;
+            refrescar();
         }
 
         function esIgual() {
-            switch(operador){
-                case '1': num1+=num2;
-                break;
-                case '2': num1 = num1 - num2;
-                break;
-                case '3': num1 = num1 * num2;
-                break;
-                case '4': num1 = num1 / num2;
-                break;
-                case '5': num1 = num1 ** num2; //Math.pow(num2,num1);
-                break;
-
+            num1 = parseFloat(num1);
+            num2 = parseFloat(num2);
+            switch (operador) {
+                case 1: num1 = num2 + num1;
+                    break;
+                case 2: num1 = num2 - num1;
+                    break;
+                case 3: num1 = num2 * num1;
+                    break;
+                case 4: num1 = num2 / num1;
+                    break;
+                case 5: num2 = num2 ** num1; //Math.pow(num2,num1);
+                    break;
             }
             refrescar();
         }
 
         function refrescar() {
-            document.getElementById("valor_numero").value = num1;
+                document.getElementById("valor_numero").value = num1;       
         }
 
     </script>
@@ -113,13 +120,13 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="Button" id="Potencia" value="exp" class="boton_largo funcion" onclick="operar('^')">
+                <input type="Button" id="Potencia" value="exp" class="boton_largo funcion" onclick="operar(5)">
             </td>
             <td>
-                <input type="Button" id="Dividir" value="/" class="boton funcion" onclick="operar('/')">
+                <input type="Button" id="Dividir" value="/" class="boton funcion" onclick="operar(4)">
             </td>
             <td>
-                <input type="Button" id="Multiplicar" value="x" class="boton funcion" onclick="operar('*')">
+                <input type="Button" id="Multiplicar" value="x" class="boton funcion" onclick="operar(3)">
             </td>
         </tr>
         <tr>
@@ -133,7 +140,7 @@
                 <input type="Button" id="9" value="9" class="boton" onclick="darNumero('9')">
             </td>
             <td>
-                <input type="Button" id="Restar" value="-" class="boton funcion" onclick="operar('-')">
+                <input type="Button" id="Restar" value="-" class="boton funcion" onclick="operar(2)">
             </td>
         </tr>
         <tr>
@@ -147,7 +154,7 @@
                 <input type="Button" id="6" value="6" class="boton" onclick="darNumero('6')">
             </td>
             <td>
-                <input type="Button" id="Sumar" value="+" class="boton funcion" onclick="operar('+')">
+                <input type="Button" id="Sumar" value="+" class="boton funcion" onclick="operar(1)">
             </td>
         </tr>
         <tr>
