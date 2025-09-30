@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tabla Multiplicar</title>
+        <script>
+
+            let tablaMultiplicar = "<ul>";
+
+            function generar(){
+                let numero = parseInt(document.getElementById('valor_numero').value);
+                console.log("El numero es:" + numero);
+                for (i = 0; i <= 10; i++) {
+                    console.log("Multiplicamos: " + i + "por" + numero + " y esto es igual a: " + (i * numero));
+                    tablaMultiplicar += "<li>" + i + " x " + numero + " = " + (i * numero) + "</li>";
+                    document.getElementById("tabla").innerHTML=tablaMultiplicar;
+                }
+                tablaMultiplicar += "</ul>";
+                
+            }
+        </script>
+    </head>
+    
+    <body>
+        <label>Número:</label>
+        <input type="text" id="valor_numero" maxlength="2" value="0">
+        <input type="button" id="generarTabla" value="Generar" onclick="generar()">
+        <div id="tabla"></div>
+    </body>
+</html>
